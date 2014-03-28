@@ -23,8 +23,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.EmbeddedWebApplicationContext;
 import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.RestTemplates;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
@@ -38,16 +38,17 @@ import org.springframework.web.client.RestTemplate;
 @WebAppConfiguration
 @ActiveProfiles("test")
 public class ApplicationTests {
-	
+
 	@Autowired
 	private EmbeddedWebApplicationContext server;
-	
-	private RestTemplate restTemplate = RestTemplates.get();
+
+	private RestTemplate restTemplate = new TestRestTemplate();
 
 	@Test
 	public void contextLoads() {
 		ResponseEntity<String> entity = restTemplate.getForEntity("http://localhost:"
-				+ server.getEmbeddedServletContainer().getPort(), String.class);
+				+ server.getEmbeddedServletContainer().getPort() + "/api-docs/home",
+				String.class);
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 	}
 
