@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.demo</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>jersey-swagger-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>demo</name>
-	<description>Demo project</description>
+	<description>Demo project fo Swagger and Jersey</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
